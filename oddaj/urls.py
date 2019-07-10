@@ -17,14 +17,16 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from myapp.views import IndexView, RegisterView, AdminProfileView
+from myapp.views import IndexView, RegisterView, AdminProfileView, UserProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', IndexView.as_view(), name="index"),
     path('login/', auth_views.LoginView.as_view(template_name='myapp/login.html'), name="login"),
+    path('logout/', auth_views.LogoutView.as_view(template_name='myapp/login.html'), name="logout"),
     path('register/', RegisterView.as_view(), name="register"),
-    path('admin_list/', AdminProfileView.as_view(), name="admin-list"),
+    path('admin_profile/', AdminProfileView.as_view(), name="admin-profile"),
+    path('user_profile/', UserProfileView.as_view(), name="user-profile"),
 
 
 ]

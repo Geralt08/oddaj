@@ -28,3 +28,7 @@ class AdminProfileView(LoginRequiredMixin, View):
         users = User.objects.filter(is_superuser=True)
         return render(request, 'myapp/admin_site.html', {'users': users})
 
+
+class UserProfileView(LoginRequiredMixin, View):
+    def get(self, request):
+        pass

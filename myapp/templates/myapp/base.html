@@ -13,8 +13,15 @@
 <header class="header--main-page">
     <nav class="container container--70">
         <ul class="nav--actions">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}" class="btn btn--small btn--without-border">Wyloguj</a></li>
+            <li><a href="{% url 'user-profile' %}" class="btn btn--small btn--without-border">Profil</a></li>
+
+
+            {% else %}
             <li><a href="{% url 'login' %}" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="{% url 'register' %}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            {% endif %}
         </ul>
 
         <ul>
@@ -30,28 +37,3 @@
 {% block content %}
 {% endblock %}
 
-<footer>
-    <div class="contact">
-        <h2>Skontaktuj się z nami</h2>
-        <h3>Formularz kontaktowy</h3>
-        <form class="form--contact">
-            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>
-            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>
-
-            <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>
-
-            <button class="btn" type="submit">Wyślij</button>
-        </form>
-    </div>
-    <div class="bottom-line">
-        <span class="bottom-line--copy">Copyright &copy; 2018</span>
-        <div class="bottom-line--icons">{% load static %}
-            <a href="#" class="btn btn--small"><img src="{% static "myapp/images/icon-facebook.svg" %}"/></a> <a
-                href="#" class="btn btn--small"><img src="{% static "myapp/images/icon-instagram.svg" %}"/></a>
-        </div>
-    </div>
-</footer>
-
-<script src="{% static 'myapp/js/app.js' %}"></script>
-</body>
-</html>
