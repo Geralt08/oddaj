@@ -1,24 +1,37 @@
-{% extends 'myapp/base.html %}
+{% extends 'myapp/base.html' %}
 {% block content %}
-    <section class="login-page">
-      <h2>Załóż konto</h2>
-      <form method="post">
+<section class="login-page">
+    <h2>Załóż konto</h2>
+    <form method="post">
         {% csrf_token %}
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" />
+            <label for="{{ form.username.id_for_label }}">Podaj nazwę użytkownika:</label>
+            {{ form.username }}
         </div>
         <div class="form-group">
-          <input type="password" name="password1" placeholder="Hasło" />
+            <label for="{{ form.email.id_for_label }}">Podaj email:</label>
+            {{ form.email }}
+        </div>        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">Podaj imię:</label>
+            {{ form.first_name }}
+        </div>        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">Podaj nazwisko:</label>
+            {{ form.last_name }}
         </div>
         <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
+            <label for="{{ form.password1.id_for_label }}"> Podaj hasło:</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}"> Podaj hasło:</label>
+            {{ form.password2 }}
         </div>
 
         <div class="form-group form-group--buttons">
-          <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
-          <button class="btn" type="submit">Załóż konto</button>
+            <a href="{% url 'login' %}" class="btn btn--without-border">Zaloguj się</a>
+            <button class="btn" type="submit">Załóż konto</button>
         </div>
-      </form>
-    </section>
+    </form>
+</section>
 
 {% endblock %}

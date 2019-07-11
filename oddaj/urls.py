@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from myapp.views import IndexView, RegisterView, AdminProfileView, UserProfileView
+from myapp.views import IndexView, RegisterView, AdminProfileView, UserProfileView, RedirectUserView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name="register"),
     path('admin_profile/', AdminProfileView.as_view(), name="admin-profile"),
     path('user_profile/', UserProfileView.as_view(), name="user-profile"),
+    path('redirect_user/', RedirectUserView.as_view(), name="redirect-user"),
 
 
 ]
