@@ -55,7 +55,7 @@ class UserProfileView(LoginRequiredMixin, View):
 
 class RedirectUserView(LoginRequiredMixin, View):
     def get(self, request):
-        if self.request.user.is_superuser == True:
+        if self.request.user.is_superuser:
             return redirect('admin-profile')
         else:
             return redirect('user-profile')

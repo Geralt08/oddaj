@@ -127,3 +127,4 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'redirect-user'
 
 LOGIN_URL = 'login'
+
