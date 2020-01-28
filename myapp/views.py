@@ -33,7 +33,24 @@ class RegisterView(View):
 class AdminProfileView(LoginRequiredMixin, View):
     def get(self, request):
         users = User.objects.filter(is_superuser=True)
-        return render(request, 'myapp/admin_site.html', {'users': users})
+        form = UserRegistrationForm()
+        ctx = {'users': users,
+               'form': form,
+               }
+        return render(request, 'myapp/admin_site.html', ctx)
+    def post(self, request):
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            admin_user = User.objects.create_superuser(username=form.cleaned_data['username'],
+                                          email=form.cleaned_data['email'],
+                                          first_name=form.cleaned_data['first_name'],
+                                          last_name=form.cleaned_data['last_name'],
+                                          password=form.cleaned_data['password1'],)
+            admin_user.save()
+            messages.success(request, f'Admin dodany!')
+            return redirect('index')
+        else:
+            return render(request, 'myapp/admin_site.html', {'form': form})
 
 
 class UserProfileView(LoginRequiredMixin, View):

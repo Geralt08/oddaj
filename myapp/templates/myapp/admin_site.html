@@ -7,5 +7,14 @@
     <p>{{ user.username }}</p>
     {% endfor %}
 </div>
+<div>
 
+    <form method="POST">
+        {% csrf_token %}
+    <p>{{ form.as_p }}</p>
+    <button class="btn" type="submit">Stwórz Admina</button>
+    </form>
+
+
+</div>
 
